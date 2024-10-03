@@ -1,12 +1,14 @@
-package com.wafflestudio.waffleseminar2024
+package com.wafflestudio.waffleseminar2024.profile.ui
 
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 
-class WorkspaceUrlTextWatcher(private val editText: EditText, private val submitButton: Button):TextWatcher {
+class WorkspaceUrlTextWatcher(private val editText: EditText, private val submitButton: Button) : TextWatcher {
+
     private var cursorPosition: Int = 0
+
     private var isUserTyping: Boolean = false
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -15,7 +17,7 @@ class WorkspaceUrlTextWatcher(private val editText: EditText, private val submit
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        isUserTyping  = count > 0
+        isUserTyping = count > 0
     }
 
     override fun afterTextChanged(s: Editable?) {
@@ -30,8 +32,9 @@ class WorkspaceUrlTextWatcher(private val editText: EditText, private val submit
                 val positionDiff = if (isUserTyping) 1 else -1
                 editText.setSelection(cursorPosition + positionDiff)
                 editText.addTextChangedListener(this)
-                }
+            }
         }
         submitButton.isEnabled = s?.isNotEmpty() == true
     }
+
 }

@@ -1,4 +1,4 @@
-package com.wafflestudio.waffleseminar2024
+package com.wafflestudio.waffleseminar2024.profile.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -11,8 +11,10 @@ import android.view.Menu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.wafflestudio.waffleseminar2024.R
 
-class UserInformationActivity: AppCompatActivity() {
+class ProfileActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_information)
@@ -25,11 +27,11 @@ class UserInformationActivity: AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_user_information, menu)
         return true
     }
-    
+
     private fun addToolbarOption() {
         val toolbar: Toolbar = findViewById(R.id.toolbarUserInformation)
         setSupportActionBar(toolbar)
-        
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "프로필"
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24)
@@ -63,6 +65,6 @@ class UserInformationActivity: AppCompatActivity() {
 
         textView.text = spannableString
         textView.movementMethod = LinkMovementMethod.getInstance()
-
     }
+
 }
