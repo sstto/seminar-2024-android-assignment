@@ -11,13 +11,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.databinding.ActivityTabLayoutBinding
-import com.wafflestudio.waffleseminar2024.main.app.AppTab
-import com.wafflestudio.waffleseminar2024.main.app.AppViewModel
-import com.wafflestudio.waffleseminar2024.main.game.GameTab
-import com.wafflestudio.waffleseminar2024.main.game.GameViewModel
-import com.wafflestudio.waffleseminar2024.main.profile.ProfileTab
-import com.wafflestudio.waffleseminar2024.main.profile.ProfileViewModel
-import com.wafflestudio.waffleseminar2024.main.search.SearchTab
 import com.wafflestudio.waffleseminar2024.main.search.SearchViewModel
 
 class TabLayoutActivity : AppCompatActivity() {
@@ -28,10 +21,7 @@ class TabLayoutActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTabLayoutBinding
 
-    private val gameViewModel: GameViewModel by viewModels()
-    private val appViewModel: AppViewModel by viewModels()
     private val searchViewModel: SearchViewModel by viewModels()
-    private val profileViewModel: ProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +35,14 @@ class TabLayoutActivity : AppCompatActivity() {
         }
 
         val tabs = listOf(
-            GameTab(gameViewModel, this),
-            AppTab(appViewModel, this),
-            SearchTab(searchViewModel, this),
-            ProfileTab(profileViewModel, this),
+            Tab.GameTab(this),
+            Tab.AppTab(this),
+            Tab.SearchTab(searchViewModel, this),
+            Tab.ProfileTab(this),
         )
 
         viewPager = binding.viewPager
-        viewPager.adapter = ViewAdapter(tabs)
+        viewPager.adapter = TabLayoutViewAdapter(tabs)
         tabLayout = binding.tabs
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->

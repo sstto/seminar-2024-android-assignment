@@ -1,15 +1,19 @@
 package com.wafflestudio.waffleseminar2024.main
 
-import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
-import androidx.viewbinding.ViewBinding
+import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
+import com.wafflestudio.waffleseminar2024.main.search.SearchViewModel
 
-interface Tab {
+sealed interface Tab {
 
-    val viewModel: ViewModel
+    val activity: Activity
 
-    val getBinding: (ViewGroup) -> ViewBinding
+    class GameTab(override val activity: Activity): Tab
 
-    fun bind()
+    class AppTab(override val activity: Activity): Tab
+
+    class SearchTab(val viewModel: SearchViewModel, override val activity: Activity): Tab
+
+    class ProfileTab(override val activity: AppCompatActivity): Tab
 
 }

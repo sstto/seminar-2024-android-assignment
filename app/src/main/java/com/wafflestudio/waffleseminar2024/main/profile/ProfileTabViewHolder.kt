@@ -8,19 +8,13 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
 import com.wafflestudio.waffleseminar2024.R
 import com.wafflestudio.waffleseminar2024.databinding.ActivityUserInformationBinding
-import com.wafflestudio.waffleseminar2024.main.Tab
+import com.wafflestudio.waffleseminar2024.main.TabLayoutViewAdapter
 
-class ProfileTab(override val viewModel: ViewModel, private val activity: AppCompatActivity) : Tab {
+class ProfileTabViewHolder(val activity: AppCompatActivity, parent: ViewGroup) : TabLayoutViewAdapter.TabViewHolder(ActivityUserInformationBinding.inflate(activity.layoutInflater, parent, false)) {
 
-    private lateinit var binding: ActivityUserInformationBinding
-
-    override val getBinding = { parent: ViewGroup ->
-        binding = ActivityUserInformationBinding.inflate(activity.layoutInflater, parent, false)
-        binding
-    }
+    private val binding = super.viewBinding as ActivityUserInformationBinding
 
     override fun bind() {
         addToolbarOption()
