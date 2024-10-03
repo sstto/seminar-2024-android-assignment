@@ -1,4 +1,4 @@
-package com.wafflestudio.waffleseminar2024
+package com.wafflestudio.waffleseminar2024.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,15 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.wafflestudio.waffleseminar2024.profile.ui.ProfileActivity
-import com.wafflestudio.waffleseminar2024.profile.ui.WorkspaceUrlTextWatcher
+import com.wafflestudio.waffleseminar2024.R
+import com.wafflestudio.waffleseminar2024.main.TabLayoutActivity
+import com.wafflestudio.waffleseminar2024.main.profile.WorkspaceUrlTextWatcher
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             val workspaceUrl = editText.text.toString()
-            val intent = Intent(this, ProfileActivity::class.java)
+            val intent = Intent(this, TabLayoutActivity::class.java)
             intent.putExtra("WORKSPACE_URL", workspaceUrl)
             startActivity(intent)
         }

@@ -1,58 +1,57 @@
-package com.wafflestudio.waffleseminar2024.profile.ui
+package com.wafflestudio.waffleseminar2024.main.profile
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import android.text.SpannableString
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.view.Menu
-import android.widget.TextView
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModel
 import com.wafflestudio.waffleseminar2024.R
+import com.wafflestudio.waffleseminar2024.databinding.ActivityUserInformationBinding
+import com.wafflestudio.waffleseminar2024.main.Tab
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileTab(override val viewModel: ViewModel, private val activity: AppCompatActivity) : Tab {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_information)
+    private lateinit var binding: ActivityUserInformationBinding
+
+    override val getBinding = { parent: ViewGroup ->
+        binding = ActivityUserInformationBinding.inflate(activity.layoutInflater, parent, false)
+        binding
+    }
+
+    override fun bind() {
         addToolbarOption()
         addWorkspaceUrl()
         addGithubLink()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_user_information, menu)
-        return true
-    }
-
     private fun addToolbarOption() {
-        val toolbar: Toolbar = findViewById(R.id.toolbarUserInformation)
-        setSupportActionBar(toolbar)
+        val toolbar = binding.toolbarUserInformation
+        activity.setSupportActionBar(toolbar)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "프로필"
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24)
+        activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        activity.supportActionBar?.title = "프로필"
+        activity.supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24)
     }
 
     private fun addWorkspaceUrl() {
-        val slackWorkspaceValueView: TextView = findViewById(R.id.slackWorkspaceValue)
-        val workspaceUrl = intent.getStringExtra("WORKSPACE_URL")
+        val slackWorkspaceValueView = binding.slackWorkspaceValue
+        val workspaceUrl = activity.intent.getStringExtra("WORKSPACE_URL")
         slackWorkspaceValueView.text = workspaceUrl
-
     }
 
     private fun addGithubLink() {
-        val textView: TextView = findViewById(R.id.githubValue)
+        val textView = binding.githubValue
         val text = "hjlim7831"
         val spannableString = SpannableString(text)
 
         val clickableSpan = object : ClickableSpan() {
             override fun onClick(widget: android.view.View) {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/hjlim7831"))
-                startActivity(intent)
+                activity.startActivity(intent)
             }
 
             override fun updateDrawState(ds: TextPaint) {

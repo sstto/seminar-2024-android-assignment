@@ -1,4 +1,4 @@
-package com.wafflestudio.waffleseminar2024.profile.ui
+package com.wafflestudio.waffleseminar2024.main.profile
 
 import android.text.Editable
 import android.text.TextWatcher
