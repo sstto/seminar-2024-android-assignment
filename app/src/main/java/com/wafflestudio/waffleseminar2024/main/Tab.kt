@@ -17,7 +17,7 @@ sealed interface Tab {
 
     class AppTab(override val activity: Activity, override val name: String, override val icon: Drawable?): Tab
 
-    class SearchTab(val viewModel: SearchViewModel, override val activity: Activity, override val name: String, override val icon: Drawable?): Tab
+    class SearchTab(val viewModel: SearchViewModel, override val activity: AppCompatActivity, override val name: String, override val icon: Drawable?): Tab
 
     class ProfileTab(override val activity: AppCompatActivity, override val name: String, override val icon: Drawable?): Tab
 
